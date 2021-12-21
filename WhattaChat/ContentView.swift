@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(0 ..< 10) { item in
-                    Text(String(item))
+                    ChatRow()
                 }
             }
             .listStyle(PlainListStyle())
