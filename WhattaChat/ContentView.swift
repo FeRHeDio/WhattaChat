@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    let chats = Chat.sampleData
+    @StateObject var chatsViewModel = ChatsViewModel()
     
     @State private var query = ""
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(chats) { chat in
+                ForEach(chatsViewModel.getSortedFileredeChats(query: query)) { chat in
                     ChatRow(chat: chat)
                 }
-            } 
+            }
             .listStyle(PlainListStyle())
             .searchable(text: $query)
             .navigationTitle("Whatta Chat!")
