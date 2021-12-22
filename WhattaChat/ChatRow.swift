@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ChatRow: View {
+    
+    let chat: Chat
+    
     var body: some View {
         HStack (spacing: 20) {
-            Image(systemName: "person")
+            Image(chat.person.image)
                 .resizable()
                 .frame(width: 70, height: 70)
                 .clipShape(Circle())
@@ -18,26 +21,28 @@ struct ChatRow: View {
             ZStack {
                 VStack (alignment: .leading, spacing: 5) {
                     HStack {
-                        Text("John Weird")
+                        Text(chat.person.name)
                             .bold()
                         
                         Spacer()
                         
-                        Text("12/21/2021")
+                        Text(chat.messages.last?.date.description ?? "")
                     }
                     
                     HStack {
-                        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ")
+                        Text(chat.messages.last?.text ?? "")
                             .foregroundColor(.gray)
                             .lineLimit(2)
                             .frame(height: 50, alignment: .top)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.trailing, 40)
                     }
-                    
                 }
+                Circle()
+                    .foregroundColor(chat.hasUnreadMessage ? .blue : .clear)
+                    .frame(width: 18, height: 18)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            
         }
         .frame(height: 80)
     }
@@ -45,6 +50,6 @@ struct ChatRow: View {
 
 struct ChatRow_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRow()
+        ChatRow(chat: Chat.sampleData[0] )
     }
 }
