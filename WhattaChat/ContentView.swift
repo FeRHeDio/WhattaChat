@@ -16,7 +16,17 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(chatsViewModel.getSortedFileredeChats(query: query)) { chat in
-                    ChatRow(chat: chat)
+                    ZStack {
+                        ChatRow(chat: chat)
+                        NavigationLink {
+                            Text(chat.person.name)
+                        } label: {
+                            EmptyView()
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .frame(width: 0)
+                        .opacity(0)
+                    }
                 }
             }
             .listStyle(PlainListStyle())
