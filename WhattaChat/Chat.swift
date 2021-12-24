@@ -69,8 +69,8 @@ extension Chat {
             Message("Talk to your wife about this, you cannot be such a pussy.. ", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 6))
         ], hasUnreadMessage: true),
         
-        Chat(person: Person(name: "A new girl", image: "Ellipse-30"), messages: [
-            Message("Seriously! ", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 7))
+        Chat(person: Person(name: "Gina Lolo", image: "Ellipse-30"), messages: [
+            Message("Seriously¿¿?¿?¿?! ", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 7))
         ], hasUnreadMessage: true)
     ]
 }

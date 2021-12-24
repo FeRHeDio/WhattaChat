@@ -19,13 +19,26 @@ struct ContentView: View {
                     ZStack {
                         ChatRow(chat: chat)
                         NavigationLink {
-                            Text(chat.person.name)
+                            ChatView(chat: chat)
+                                .environmentObject(chatsViewModel)
                         } label: {
                             EmptyView()
                         }
                         .buttonStyle(PlainButtonStyle())
                         .frame(width: 0)
                         .opacity(0)
+                    }
+                    .swipeActions (edge: .leading, allowsFullSwipe: true) {
+                        Button(action: {
+                            chatsViewModel.markAsUnread(!chat.hasUnreadMessage, chat: chat)
+                        }) {
+                            if chat.hasUnreadMessage {
+                                Label("Read", systemImage: "text.bubble")
+                            } else {
+                                Label("Unread", systemImage: "circle.fill ")
+                            }
+                        }
+                        .tint(.blue)
                     }
                 }
             }
@@ -42,5 +55,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            
     }
 }

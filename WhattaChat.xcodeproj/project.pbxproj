@@ -15,6 +15,7 @@
 		768BBB1527729D5C007FE460 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BBB1427729D5C007FE460 /* Chat.swift */; };
 		76FF0A1D27735E9C00967DF0 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF0A1C27735E9C00967DF0 /* Date+Helpers.swift */; };
 		76FF0A1F2773774500967DF0 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF0A1E2773774500967DF0 /* ChatsViewModel.swift */; };
+		76FF0A212775F45F00967DF0 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF0A202775F45F00967DF0 /* ChatView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		768BBB1427729D5C007FE460 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		76FF0A1C27735E9C00967DF0 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		76FF0A1E2773774500967DF0 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
+		76FF0A202775F45F00967DF0 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				768BBB0427728653007FE460 /* WhattaChatApp.swift */,
 				768BBB0627728653007FE460 /* ContentView.swift */,
+				76FF0A202775F45F00967DF0 /* ChatView.swift */,
 				76FF0A1E2773774500967DF0 /* ChatsViewModel.swift */,
 				768BBB12277288C1007FE460 /* ChatRow.swift */,
 				768BBB1427729D5C007FE460 /* Chat.swift */,
@@ -153,6 +156,7 @@
 				768BBB0727728653007FE460 /* ContentView.swift in Sources */,
 				768BBB1527729D5C007FE460 /* Chat.swift in Sources */,
 				768BBB13277288C2007FE460 /* ChatRow.swift in Sources */,
+				76FF0A212775F45F00967DF0 /* ChatView.swift in Sources */,
 				768BBB0527728653007FE460 /* WhattaChatApp.swift in Sources */,
 				76FF0A1D27735E9C00967DF0 /* Date+Helpers.swift in Sources */,
 			);
