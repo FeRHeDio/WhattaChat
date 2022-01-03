@@ -17,6 +17,7 @@ struct ChatView: View {
             GeometryReader { reader in
                 ScrollView {
                     getMessagesView(viewWidth: reader.size.width)
+                        .padding(.horizontal)
                 }
             }
             .background(.yellow)
@@ -56,7 +57,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(chat: Chat.sampleData[2])
+        ChatView(chat: Chat.sampleData[5])
             .environmentObject(ChatsViewModel())
     }
 }
