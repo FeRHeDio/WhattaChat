@@ -29,4 +29,13 @@ class ChatsViewModel: ObservableObject {
             chats[index].hasUnreadMessage = newValue
         }
     }
+    
+    func sendMessage(_ text: String, in chat: Chat) -> Message? {
+        if let index = chats.firstIndex(where: { $0.id == chat.id }) {
+            let message = Message(text, type: .Sent)
+            chats[index].messages.append(message)
+            return message
+        }
+        return nil
+    }
 }

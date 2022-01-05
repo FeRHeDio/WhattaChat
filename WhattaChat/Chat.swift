@@ -10,7 +10,7 @@ import Foundation
 struct Chat: Identifiable {
     var id: UUID { person.id }
     let person: Person
-    let messages: [Message]
+    var messages: [Message]
     var hasUnreadMessage = false
 }
 

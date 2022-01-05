@@ -10,8 +10,12 @@ import SwiftUI
 struct ChatView: View {
     
     @EnvironmentObject var chatsViewModel: ChatsViewModel
+    @State private var text = ""
+    @FocusState private var isFocused
     
     let chat: Chat
+    
+    
     var body: some View {
         VStack(spacing: 0) {
             GeometryReader { reader in
@@ -21,12 +25,50 @@ struct ChatView: View {
                 }
             }
             .background(.yellow)
+            
+            toolbarView()
         }
         .padding(.top, 1)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             chatsViewModel.markAsUnread(false, chat: chat)
         }
+    }
+    
+    func toolbarView() -> some View {
+        VStack {
+            let height: CGFloat = 37
+            HStack {
+                TextField("Message... ", text: $text)
+                    .padding(.horizontal, 10)
+                    .frame(height: height)
+                    .background(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 13))
+                    .focused($isFocused)
+                
+                Button(action: sendMessage) {
+                    Image(systemName: "paperplane.fill")
+                        .foregroundColor(.white)
+                        .frame(width: height, height: height)
+                        .background(
+                            Circle()
+                                .foregroundColor(text.isEmpty ? .gray : .blue)
+                        )
+                }
+                .disabled(text.isEmpty)
+            }
+            .frame(height: height)
+        }
+        .padding(.vertical)
+        .padding(.horizontal)
+        .background(.thickMaterial)
+    }
+    
+    func sendMessage() {
+        if let message = chatsViewModel.sendMessage(text, in: chat) {
+            text = ""
+        }
+        
     }
     
     let columns = [GridItem(.flexible(minimum: 10))]
