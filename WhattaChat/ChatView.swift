@@ -43,11 +43,39 @@ struct ChatView: View {
         }
         .padding(.top, 1)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(leading: leadingNavButton, trailing: trailingNavButton)
         .onAppear {
             chatsViewModel.markAsUnread(false, chat: chat)
         }
     }
     
+    var leadingNavButton: some View {
+        Button(action: {}) {
+            HStack {
+                Image(chat.person.image)
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                Text(chat.person.name).bold()
+            }
+            .foregroundColor(.black)
+        }
+    }
+    
+    var trailingNavButton: some View {
+        Button(action: {}) {
+            HStack {
+                Button(action: { }) {
+                    Image(systemName: "video")
+                }
+                
+                Button(action: { }) {
+                    Image(systemName: "phone")
+                }
+            }
+        }
+    }
+
     func scrollTo(messageID: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
         DispatchQueue.main.async {
             withAnimation(shouldAnimate ? Animation.easeIn : nil) {
@@ -91,7 +119,6 @@ struct ChatView: View {
             messageIDToScroll = message.id
             
         }
-        
     }
     
     let columns = [GridItem(.flexible(minimum: 10))]
@@ -122,7 +149,9 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(chat: Chat.sampleData[5])
-            .environmentObject(ChatsViewModel())
+        NavigationView {
+            ChatView(chat: Chat.sampleData[5])
+                .environmentObject(ChatsViewModel())
+        }
     }
 }
