@@ -12,6 +12,7 @@ struct ChatView: View {
     @EnvironmentObject var chatsViewModel: ChatsViewModel
     @State private var text = ""
     @FocusState private var isFocused
+    @State private var messageIDToScroll: UUID?
     
     let chat: Chat
     
@@ -20,8 +21,15 @@ struct ChatView: View {
         VStack(spacing: 0) {
             GeometryReader { reader in
                 ScrollView {
-                    getMessagesView(viewWidth: reader.size.width)
-                        .padding(.horizontal)
+                    ScrollViewReader { scrollReader in
+                        getMessagesView(viewWidth: reader.size.width)
+                            .padding(.horizontal)
+                            .onChange(of: messageIDToScroll) { _ in
+                                if let messageIDToScroll = messageIDToScroll {
+                                    scrollTo(messageID: messageIDToScroll, shouldAnimate: true, scrollReader: scrollReader)
+                                }
+                            }
+                    }
                 }
             }
             .background(.yellow)
@@ -32,6 +40,14 @@ struct ChatView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             chatsViewModel.markAsUnread(false, chat: chat)
+        }
+    }
+    
+    func scrollTo(messageID: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
+        DispatchQueue.main.async {
+            withAnimation(shouldAnimate ? Animation.easeIn : nil) {
+                scrollReader.scrollTo(messageID, anchor: anchor)
+            }
         }
     }
     
@@ -67,6 +83,8 @@ struct ChatView: View {
     func sendMessage() {
         if let message = chatsViewModel.sendMessage(text, in: chat) {
             text = ""
+            messageIDToScroll = message.id
+            
         }
         
     }
