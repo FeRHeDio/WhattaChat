@@ -69,6 +69,10 @@ extension Chat {
             Message("Talk to your wife about this, you cannot be such a pussy.. ", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 6)),
             Message("But Mario are you talking seriously? I can believe what you just said. ", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 6)),
             Message("Indeed, you're such a pussy.. yay", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 6)),
+            Message("And let me remind you that you owe me 4 dinners.. moron", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 6)),
+            Message("I don't know how in hell my sister want to be with a moron like you.. ", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 6)),
+            Message("Anywhay, have a great weekend :lol: ", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 6)),
+            Message("Go to hell old man and burn in pain", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 6)),
         ], hasUnreadMessage: true),
         
         Chat(person: Person(name: "Gina Lolo", image: "Ellipse-30"), messages: [

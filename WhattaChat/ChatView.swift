@@ -29,10 +29,15 @@ struct ChatView: View {
                                     scrollTo(messageID: messageIDToScroll, shouldAnimate: true, scrollReader: scrollReader)
                                 }
                             }
+                            .onAppear {
+                                if let messageID = chat.messages.last?.id {
+                                    scrollTo(messageID: messageID, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)
+                                }
+                            }
                     }
                 }
             }
-            .background(.yellow)
+            .padding(.bottom, 5)
             
             toolbarView()
         }
