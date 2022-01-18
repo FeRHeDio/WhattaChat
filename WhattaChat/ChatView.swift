@@ -124,26 +124,44 @@ struct ChatView: View {
     let columns = [GridItem(.flexible(minimum: 10))]
     
     func getMessagesView(viewWidth: CGFloat) -> some View {
-        LazyVGrid(columns: columns, spacing: 0) {
-            ForEach(chat.messages) { message in
-                let isReceived = message.type == .Received
-                HStack {
-                    ZStack {
-                        Text(message.text)
-                            .padding(.horizontal)
-                            .padding(.vertical, 12)
-                            .background(isReceived ? .black.opacity(0.2) : .green.opacity(0.9))
-                            .cornerRadius(13)
-                            
+        LazyVGrid(columns: columns, spacing: 0, pinnedViews: [.sectionHeaders]) {
+            let sectionMessages = chatsViewModel.getSectionMessages(for: chat)
+            ForEach(sectionMessages.indices, id: \.self) { sectionIndex in
+                let messages = sectionMessages[sectionIndex]
+                Section(header: sectionHeader(firstMessage: messages.first!)) {
+                    ForEach(messages) { message in
+                        let isReceived = message.type == .Received
+                        HStack {
+                            ZStack {
+                                Text(message.text)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 12)
+                                    .background(isReceived ? .black.opacity(0.2) : .green.opacity(0.9))
+                                    .cornerRadius(13)
+                                
+                            }
+                            .frame(width: viewWidth * 0.7, alignment: isReceived ? .leading : .trailing)
+                            .padding(.vertical)
+                        }
+                        .frame(maxWidth: .infinity, alignment: isReceived ? .leading : .trailing)
+                        .id(message.id)
                     }
-                    .frame(width: viewWidth * 0.7, alignment: isReceived ? .leading : .trailing)
-                    .padding(.vertical)
-//                    .background(.blue)
                 }
-                .frame(maxWidth: .infinity, alignment: isReceived ? .leading : .trailing)
-                .id(message.id)
             }
         }
+    }
+    
+    func sectionHeader(firstMessage message: Message) -> some View {
+        ZStack {
+            Text(message.date.descriptiveString(dateStyle: .medium))
+                .foregroundColor(.white)
+                .font(.system(size: 14, weight: .regular))
+                .frame(width: 120)
+                .padding(.vertical, 5)
+                .background(Capsule().foregroundColor(.blue))
+        }
+        .padding(.vertical, 5)
+        .frame(maxWidth: .infinity)
     }
 }
 
