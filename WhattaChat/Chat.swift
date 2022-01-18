@@ -90,7 +90,7 @@ extension Chat {
             Message("OMG so bad @@", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 1)),
             Message ("Let me try one", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 1)),
             Message ("There are 10 types of people in this world, those who understand binary and those who don't", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 1)),
-            Message("This joke is sooo old haha", type: .Received, date: Date()),
+            Message("This joke is sooo old haha haraajajaja", type: .Received, date: Date()),
         ], hasUnreadMessage: true)
     ]
 }
